@@ -1,0 +1,58 @@
+# Default configuration for IoT Anomaly Detection
+
+# Data configuration
+data:
+  sensor_types: ["temperature", "humidity", "pressure", "vibration"]
+  num_sensors_per_type: 5
+  duration_hours: 168.0  # 1 week
+  sampling_rate_hz: 0.1  # Every 10 seconds
+  train_split: 0.8
+
+# Model configuration
+model:
+  type: "tensorflow"  # "pytorch" or "tensorflow"
+  input_dim: 1
+  hidden_dims: [4, 2]
+  threshold_method: "statistical"  # "statistical", "percentile", "iqr"
+  threshold_value: 3.0
+  device: "auto"  # "cpu", "cuda", "auto"
+
+# Compression configuration
+compression:
+  enabled: true
+  quantization:
+    enabled: true
+    method: "dynamic"  # "dynamic", "static", "float16", "int8"
+  pruning:
+    enabled: true
+    method: "magnitude"  # "magnitude", "random", "structured"
+    ratio: 0.2
+
+# Export configuration
+export:
+  onnx:
+    enabled: true
+  tensorflow:
+    enabled: true
+  tflite:
+    enabled: true
+
+# Evaluation configuration
+evaluation:
+  batch_size: 32
+  target_latency_ms: 100.0
+  target_memory_mb: 50.0
+  target_accuracy: 0.9
+
+# MQTT configuration (for streaming)
+mqtt:
+  broker_host: "localhost"
+  broker_port: 1883
+  username: null
+  password: null
+  topic_prefix: "sensors"
+
+# Logging configuration
+logging:
+  level: "INFO"
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"

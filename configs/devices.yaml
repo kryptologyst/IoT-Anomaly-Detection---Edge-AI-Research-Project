@@ -1,0 +1,102 @@
+# Edge device configurations for IoT Anomaly Detection
+
+# Raspberry Pi 4 configuration
+raspberry_pi_4:
+  device_name: "Raspberry Pi 4"
+  cpu: "ARM Cortex-A72 (4 cores @ 1.5GHz)"
+  memory: "4GB LPDDR4"
+  storage: "32GB microSD"
+  os: "Raspberry Pi OS"
+  python_version: "3.10+"
+  target_latency_ms: 200.0
+  target_memory_mb: 100.0
+  target_accuracy: 0.85
+  supported_formats: ["tflite", "onnx"]
+  optimization_flags:
+    - "USE_TFLITE"
+    - "USE_ONNXRUNTIME"
+    - "CPU_ONLY"
+
+# NVIDIA Jetson Nano configuration
+jetson_nano:
+  device_name: "NVIDIA Jetson Nano"
+  cpu: "ARM Cortex-A57 (4 cores @ 1.43GHz)"
+  gpu: "NVIDIA Maxwell 128-core"
+  memory: "4GB LPDDR4"
+  storage: "32GB eMMC"
+  os: "Ubuntu 20.04 LTS"
+  python_version: "3.8+"
+  target_latency_ms: 50.0
+  target_memory_mb: 200.0
+  target_accuracy: 0.9
+  supported_formats: ["tensorrt", "onnx", "tflite"]
+  optimization_flags:
+    - "USE_TENSORRT"
+    - "USE_CUDA"
+    - "USE_ONNXRUNTIME"
+
+# Intel NCS2 configuration
+intel_ncs2:
+  device_name: "Intel Neural Compute Stick 2"
+  cpu: "Intel Movidius Myriad X VPU"
+  memory: "512MB"
+  interface: "USB 3.0"
+  os: "Linux/Windows"
+  python_version: "3.7+"
+  target_latency_ms: 100.0
+  target_memory_mb: 50.0
+  target_accuracy: 0.8
+  supported_formats: ["openvino"]
+  optimization_flags:
+    - "USE_OPENVINO"
+    - "USE_MYRIAD"
+
+# Android device configuration
+android:
+  device_name: "Android Device"
+  cpu: "ARM64"
+  memory: "4GB+"
+  storage: "32GB+"
+  os: "Android 8.0+"
+  python_version: "3.8+"
+  target_latency_ms: 150.0
+  target_memory_mb: 150.0
+  target_accuracy: 0.85
+  supported_formats: ["tflite", "onnx"]
+  optimization_flags:
+    - "USE_TFLITE"
+    - "USE_ONNXRUNTIME"
+    - "USE_NNAPI"
+
+# iOS device configuration
+ios:
+  device_name: "iOS Device"
+  cpu: "Apple A12+"
+  memory: "3GB+"
+  storage: "64GB+"
+  os: "iOS 13.0+"
+  python_version: "3.8+"
+  target_latency_ms: 100.0
+  target_memory_mb: 100.0
+  target_accuracy: 0.9
+  supported_formats: ["coreml", "onnx"]
+  optimization_flags:
+    - "USE_COREML"
+    - "USE_ONNXRUNTIME"
+
+# MCU configuration (STM32)
+stm32:
+  device_name: "STM32 Microcontroller"
+  cpu: "ARM Cortex-M4 @ 180MHz"
+  memory: "1MB Flash, 192KB RAM"
+  storage: "External SD"
+  os: "FreeRTOS"
+  python_version: "MicroPython"
+  target_latency_ms: 1000.0
+  target_memory_mb: 0.2
+  target_accuracy: 0.7
+  supported_formats: ["tflite_micro"]
+  optimization_flags:
+    - "USE_TFLITE_MICRO"
+    - "USE_CMSIS_NN"
+    - "QUANTIZED_INT8"
